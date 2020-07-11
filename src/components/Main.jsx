@@ -25,17 +25,19 @@ const Main = () => {
 
   useEffect(()=> {
     setNewVals();
-  });
+  }, []);
 
 
   const buildRow = row => {
+    console.log('build row');
     return row.map(singleSquare => {
       const randB = Math.random();
-      return (<span key={randB} style={{backgroundColor: `rgb(${singleSquare.a},${singleSquare.b},0)`, width: "4px", height: "4px"}}></span>);
+      return (<div key={randB} title={`rgb(${singleSquare.a},${singleSquare.b},0)`} style={{backgroundColor: `rgb(${singleSquare.a},${singleSquare.b},0)`, display: "inline-block", width: "4px", height: "20px"}}></div>);
     })
   }
 
   const buildGrid = outerArray  => {
+    console.log('build grid');
     return outerArray.map(innerArray => {
       const randA = Math.random();
       return (
@@ -48,7 +50,8 @@ const Main = () => {
 
 
   return (
-    <div className="main">  
+    <div className="main">
+    YO
       {buildGrid(twoFiftySixSquared)}
     </div>
   );
