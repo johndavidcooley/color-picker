@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-const Main = () => {
+const ColorGrid = ({className, updateSwatchColor}) => {
 
   const [twoFiftySixSquared, setTwoFiftySixSquared] = useState([]);
 
@@ -32,7 +33,7 @@ const Main = () => {
     console.log('build row');
     return row.map(singleSquare => {
       const randB = Math.random();
-      return (<div key={randB} title={`rgb(${singleSquare.a},${singleSquare.b},0)`} style={{backgroundColor: `rgb(${singleSquare.a},${singleSquare.b},0)`, display: "inline-block", width: "4px", height: "20px"}}></div>);
+      return (<div key={randB} data-color={`rgb(${singleSquare.a},${singleSquare.b},0)`} style={{backgroundColor: `rgb(${singleSquare.a},${singleSquare.b},0)`, display: "inline-block", width: "4px", height: "20px"}}></div>);
     })
   }
 
@@ -48,18 +49,25 @@ const Main = () => {
     });
   };
 
+  const handleMouseMove = e => {
+    updateSwatchColor(e.target.dataset.color);
+  }
+
 
   return (
-    <div className="main">
+    <div className={`${className} color-grid`} onMouseMove={handleMouseMove}>
     YO
       {buildGrid(twoFiftySixSquared)}
     </div>
   );
 };
 
-export default Main;
+export default styled(ColorGrid)`
+  display: inline-block;
+`;
 
 
-//   <input type="number" min="0" max="255" name="red" />
-//   <input type="number" min="0" max="255" name="green" />
-//   <input type="number" min="0" max="255" name="blue" />
+// Make a slider range thin for rgb color values
+// show color when hovering in big grid
+// left side changes color as you hover
+// right side keeps color on a click

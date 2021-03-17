@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import Main from './components/Main';
 
-function App() {
+import GridSwatchWrapper from './components/GridSwatchWrapper';
+
+function App({className}) {
   return (
-    <div className="App">
-      <Main />
+    <div className={className}>
+      <GridSwatchWrapper />
     </div>
   );
 }
